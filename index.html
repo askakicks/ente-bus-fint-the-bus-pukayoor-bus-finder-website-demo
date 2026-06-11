@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ENTE BUS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- LANGUAGE SCREEN -->
+
+    <section id="languageScreen" class="screen active">
+
+        <div class="language-overlay">
+
+            <img src="assets/bus.png" alt="Bus" class="language-bus">
+
+            <h1>ENTE BUS</h1>
+
+            <p>Select Language<br>ഭാഷ തിരഞ്ഞെടുക്കുക</p>
+
+            <button onclick="selectLanguage('en')" class="lang-btn">
+                🇬🇧 English
+            </button>
+
+            <button onclick="selectLanguage('ml')" class="lang-btn">
+                🇮🇳 മലയാളം
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOME SCREEN -->
+
+    <section id="homeScreen" class="screen">
+
+        <div class="app-header">
+
+            <h2 id="welcomeTitle">
+                Welcome to ENTE BUS
+            </h2>
+
+            <p id="welcomeSub">
+                Find your next bus instantly
+            </p>
+
+        </div>
+
+        <div class="hero-card">
+
+            <h3>🚍 ENTE BUS</h3>
+
+            <p>
+                Live Bus Timings<br>
+                Real Time Updates
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <h4>❤️ Made for Pukayoor</h4>
+
+            <p>
+                Travel Smart. Travel Easy.
+            </p>
+
+        </div>
+
+        <button class="primary-btn" onclick="showScreen('findScreen')">
+            Get Started
+        </button>
+
+    </section>
+
+
+    <!-- FIND BUS SCREEN -->
+
+    <section id="findScreen" class="screen">
+
+        <div class="top-bar">
+
+            <button class="back-btn"
+                onclick="showScreen('homeScreen')">
+                ←
+            </button>
+
+            <h2>Find Bus</h2>
+
+        </div>
+
+        <div class="glass-card">
+
+            <label>From</label>
+
+            <input
+                type="text"
+                value="Pukayoor"
+                readonly
+            >
+
+        </div>
+
+        <div class="glass-card">
+
+            <label>To</label>
+
+            <select id="destination">
+
+                <option value="chemmad">
+                    Chemmad
+                </option>
+
+                <option value="kunnumpuram">
+                    Kunnumpuram
+                </option>
+
+            </select>
+
+        </div>
+
+        <button
+            class="find-btn"
+            onclick="findNextBus()">
+
+            🔍 Find Bus
+
+        </button>
+
+        <div id="resultCard" class="result-card">
+
+            <h3>Next Bus</h3>
+
+            <div id="routeText">
+                Pukayoor → Chemmad
+            </div>
+
+            <div id="busTime">
+                08:22 AM
+            </div>
+
+            <div id="countdown">
+                Arriving in 12 Minutes
+            </div>
+
+            <div class="live-badge">
+                🟢 Live
+            </div>
+
+        </div>
+
+        <button
+            class="missed-btn"
+            onclick="missedBus()">
+
+            😔 I Missed My Bus
+
+        </button>
+
+        <div class="mobile-time">
+
+            Current Time
+
+            <span id="currentTime">
+                08:00 AM
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- TIMETABLE SCREEN -->
+
+   <!-- TIMETABLE SCREEN -->
+
+<section id="timetableScreen" class="screen">
+
+    <div class="top-bar">
+
+        <button class="back-btn"
+            onclick="showScreen('homeScreen')">
+            ←
+        </button>
+
+        <h2>Bus Timetable</h2>
+
+    </div>
+
+    <button
+        class="download-btn"
+        onclick="downloadTimetable()">
+
+        ⬇ Download Timetable
+
+    </button>
+
+    <p class="select-route">
+
+        Select which side you want to go
+
+    </p>
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            onclick="switchTab('chemmad', this)">
+
+            To Chemmad
+
+        </button>
+
+        <button
+            class="tab"
+            onclick="switchTab('kunnumpuram', this)">
+
+            To Kunnumpuram
+
+        </button>
+
+    </div>
+
+    <div id="timetableList">
+
+    </div>
+
+</section>
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <button onclick="showScreen('homeScreen')">
+            🏠
+            <span>Home</span>
+        </button>
+
+        <button onclick="showScreen('findScreen')">
+            🚌
+            <span>Find</span>
+        </button>
+
+        <button onclick="showScreen('timetableScreen')">
+            📅
+            <span>Timetable</span>
+        </button>
+
+        <button onclick="showScreen('aboutScreen')">
+            ℹ️
+            <span>About</span>
+        </button>
+
+    </nav>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
