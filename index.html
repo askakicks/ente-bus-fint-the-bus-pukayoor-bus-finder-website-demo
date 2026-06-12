@@ -9,43 +9,25 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- HOME SCREEN -->
-
     <section id="homeScreen" class="screen active">
 
         <div class="app-header">
-
-            <h2 id="welcomeTitle">
-                Welcome to ENTE BUS
-            </h2>
-
-            <p id="welcomeSub">
-                Find your next bus instantly
-            </p>
-
+            <h2 id="welcomeTitle">Welcome to ENTE BUS</h2>
+            <p id="welcomeSub">Find your next bus instantly</p>
         </div>
 
         <div class="hero-card">
-
             <h3>🚍 ENTE BUS</h3>
-
-            <p>
-                Live Bus Timings<br>
-                Real Time Updates
-            </p>
-
+            <p>Live Bus Timings<br>Real Time Updates</p>
         </div>
 
         <div class="info-card">
-
             <h4>❤️ Made for Pukayoor</h4>
-
-            <p>
-                Travel Smart. Travel Easy.
-            </p>
-
+            <p>Travel Smart. Travel Easy.</p>
         </div>
 
         <button class="primary-btn" onclick="showScreen('findScreen')">
@@ -56,189 +38,113 @@
 
 
     <!-- FIND BUS SCREEN -->
-
     <section id="findScreen" class="screen">
 
         <div class="top-bar">
-
-            <button class="back-btn"
-                onclick="showScreen('homeScreen')">
-                ←
-            </button>
-
+            <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
             <h2>Find Bus</h2>
-
         </div>
 
         <div class="glass-card">
-
             <label>From</label>
-
-            <input
-                type="text"
-                value="Pukayoor"
-                readonly
-            >
-
+            <input type="text" value="Pukayoor" readonly>
         </div>
 
         <div class="glass-card">
-
             <label>To</label>
-
             <select id="destination">
-
-                <option value="chemmad">
-                    Chemmad Side
-                </option>
-
-                <option value="kunnumpuram">
-                    Kunnumpuram Side
-                </option>
-
+                <option value="chemmad">Chemmad Side</option>
+                <option value="kunnumpuram">Kunnumpuram Side</option>
             </select>
-
         </div>
 
-        <button
-            class="find-btn"
-            onclick="findNextBus()">
-
+        <button class="find-btn" onclick="findNextBus()">
             🔍 Find Bus
-
         </button>
 
         <div id="resultCard" class="result-card">
-
             <h3>Next Bus</h3>
-
-            <div id="routeText">
-                Pukayoor → Chemmad
-            </div>
-
-            <div id="busTime">
-                 Click "Find Bus" To Get Latest Bus
-            </div>
-
-            <div id="countdown">
-                 Your Bus Arrive Within Few Minutes.....
-            </div>
-
-            <div class="live-badge">
-                🟢 Live
-            </div>
-
+            <div id="routeText">Pukayoor → Chemmad</div>
+            <div id="busTime">Click "Find Bus" To Get Latest Bus</div>
+            <div id="countdown">Your Bus Arrive Within Few Minutes.....</div>
+            <div class="live-badge">🟢 Live</div>
         </div>
 
-        <button
-            class="missed-btn"
-            onclick="missedBus()">
-
+        <button class="missed-btn" onclick="missedBus()">
             😔 I Missed My Bus
-
         </button>
 
         <div class="mobile-time">
-
             Current Time
-
-            <span id="currentTime">
-                08:00 AM
-            </span>
-
+            <span id="currentTime">08:00 AM</span>
         </div>
 
     </section>
 
 
     <!-- TIMETABLE SCREEN -->
-
     <section id="timetableScreen" class="screen">
 
         <div class="top-bar">
-
-            <button class="back-btn"
-                onclick="showScreen('homeScreen')">
-                ←
-            </button>
-
+            <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
             <h2>Bus Timetable</h2>
-
         </div>
 
-        <button
-            class="download-btn"
-            onclick="downloadTimetable()">
-
+        <button class="download-btn" onclick="downloadTimetable()">
             ⬇ Download Timetable
-
         </button>
 
         <p class="select-route">
-
             Select which side you want to go
-
         </p>
 
         <div class="tabs">
-
-            <button
-                class="tab active"
-                onclick="switchTab('chemmad', this)">
-
+            <button class="tab active" onclick="switchTab('chemmad', this)">
                 To Chemmad
-
             </button>
 
-            <button
-                class="tab"
-                onclick="switchTab('kunnumpuram', this)">
-
+            <button class="tab" onclick="switchTab('kunnumpuram', this)">
                 To Kunnumpuram
-
             </button>
-
         </div>
 
-        <div id="timetableList">
-
-        </div>
+        <div id="timetableList"></div>
 
     </section>
 
 
     <!-- BOTTOM NAVIGATION -->
-
     <nav class="bottom-nav">
 
         <button onclick="showScreen('homeScreen')">
-            🏠
-            <span>Home</span>
+            🏠 <span>Home</span>
         </button>
 
         <button onclick="showScreen('findScreen')">
-            🚌
-            <span>Find</span>
+            🚌 <span>Find</span>
         </button>
 
         <button onclick="showScreen('timetableScreen')">
-            📅
-            <span>Timetable</span>
+            📅 <span>Timetable</span>
         </button>
 
         <button onclick="showScreen('aboutScreen')">
-            ℹ️
-            <span>About</span>
+            ℹ️ <span>About</span>
         </button>
 
     </nav>
 
+
+    <!-- FOOTER (FIXED CLEAN POSITION) -->
+    <footer class="footer">
+        © 2026 ENTE BUS | Developed by
+        <a href="https://instagram.com/ak.sheyyy_" target="_blank">
+            Akshay Theduvil
+        </a>
+    </footer>
+
+
     <script src="script.js"></script>
-<footer class="footer">
-    © 2026 ENTE BUS | Developed by  <a href="https://instagram.com/ak.sheyyy_"
-       target="_blank">
-       Akshay Theduvil
-    </a>
-</footer>
+
 </body>
 </html>
