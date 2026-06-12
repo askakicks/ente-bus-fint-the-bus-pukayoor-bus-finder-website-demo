@@ -12,140 +12,177 @@
 
 <body>
 
-    <!-- HOME SCREEN -->
-    <section id="homeScreen" class="screen active">
+<!-- ================= HOME ================= -->
+<section id="homeScreen" class="screen active">
 
-        <div class="app-header">
-            <h2>Welcome to ENTE BUS</h2>
-            <p>Find your next bus instantly</p>
-        </div>
+    <div class="app-header">
+        <h2>Welcome to ENTE BUS</h2>
+        <p>Find your next bus instantly</p>
+    </div>
 
-        <div class="hero-card">
-            <h3>🚍 ENTE BUS</h3>
-            <p>Live Bus Timings<br>Real Time Updates</p>
-        </div>
+    <div class="hero-card">
+        <h3>🚍 ENTE BUS</h3>
+        <p>Live Bus Timings<br>Real Time Updates</p>
+    </div>
 
-        <div class="info-card">
-            <h4>❤️ Made for Pukayoor</h4>
-            <p>Travel Smart. Travel Easy.</p>
-        </div>
+    <div class="info-card">
+        <h4>❤️ Made for Pukayoor</h4>
+        <p>Travel Smart. Travel Easy.</p>
+    </div>
 
-        <button class="primary-btn" onclick="showScreen('findScreen')">
-            Get Started
+    <button class="primary-btn" onclick="showScreen('findScreen')">
+        Get Started
+    </button>
+
+</section>
+
+<!-- ================= FIND BUS ================= -->
+<section id="findScreen" class="screen">
+
+    <div class="top-bar">
+        <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
+        <h2>Find Bus</h2>
+    </div>
+
+    <div class="glass-card">
+        <label>From</label>
+        <input type="text" value="Pukayoor" readonly>
+    </div>
+
+    <div class="glass-card">
+        <label>To</label>
+        <select id="destination">
+            <option value="chemmad">Chemmad Side</option>
+            <option value="kunnumpuram">Kunnumpuram Side</option>
+        </select>
+    </div>
+
+    <button class="find-btn" onclick="findNextBus()">
+        🔍 Find Bus
+    </button>
+
+    <div id="resultCard" class="result-card">
+        <h3>Next Bus</h3>
+        <div id="routeText">Pukayoor → Chemmad</div>
+        <div id="busTime">Click "Find Bus" To Get Latest Bus</div>
+        <div id="countdown">Your Bus Arrive Within Few Minutes.....</div>
+        <div class="live-badge">🟢 Live</div>
+    </div>
+
+    <button class="missed-btn" onclick="missedBus()">
+        😔 I Missed My Bus
+    </button>
+
+    <div class="mobile-time">
+        Current Time
+        <span id="currentTime">08:00 AM</span>
+    </div>
+
+</section>
+
+<!-- ================= TIMETABLE ================= -->
+<section id="timetableScreen" class="screen">
+
+    <div class="top-bar">
+        <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
+        <h2>Bus Timetable</h2>
+    </div>
+
+    <button class="download-btn" onclick="downloadTimetable()">
+        ⬇ Download Timetable
+    </button>
+
+    <p class="select-route">
+        Select which side you want to go
+    </p>
+
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('chemmad', this)">
+            To Chemmad
         </button>
 
-    </section>
+        <button class="tab" onclick="switchTab('kunnumpuram', this)">
+            To Kunnumpuram
+        </button>
+    </div>
 
+    <div id="timetableList"></div>
 
-    <!-- FIND BUS SCREEN -->
-    <section id="findScreen" class="screen">
+</section>
 
-        <div class="top-bar">
-            <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
-            <h2>Find Bus</h2>
+<!-- ================= ABOUT (ANIMATED) ================= -->
+<section id="aboutScreen" class="screen">
+
+    <div class="top-bar">
+        <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
+        <h2>About</h2>
+    </div>
+
+    <div class="about-container">
+
+        <div class="glass-card about-card">
+            <h3>🚌 ENTE BUS</h3>
+            <p>
+                A smart bus timing app for Pukayoor travelers.
+                Find buses instantly and travel stress-free.
+            </p>
         </div>
 
-        <div class="glass-card">
-            <label>From</label>
-            <input type="text" value="Pukayoor" readonly>
+        <div class="glass-card about-card">
+            <h3>❤️ Mission</h3>
+            <p>
+                യാത്രയെ കൂടുതൽ എളുപ്പവും വേഗത്തിലും ആക്കുക എന്നതാണ് ലക്ഷ്യം.
+                Simple • Fast • Reliable
+            </p>
         </div>
 
-        <div class="glass-card">
-            <label>To</label>
-            <select id="destination">
-                <option value="chemmad">Chemmad Side</option>
-                <option value="kunnumpuram">Kunnumpuram Side</option>
-            </select>
+        <div class="glass-card about-card developer-card">
+            <h3>🚀 Developer</h3>
+            <p>
+                Built with ❤️ by <span class="glow-text">Akshay Theduvil</span>
+            </p>
+
+            <a class="insta-btn"
+               href="https://instagram.com/ak.sheyyy_"
+               target="_blank">
+                Follow on Instagram
+            </a>
         </div>
 
-        <button class="find-btn" onclick="findNextBus()">
-            🔍 Find Bus
-        </button>
+    </div>
 
-        <div id="resultCard" class="result-card">
-            <h3>Next Bus</h3>
-            <div id="routeText">Pukayoor → Chemmad</div>
-            <div id="busTime">Click "Find Bus" To Get Latest Bus</div>
-            <div id="countdown">Your Bus Arrive Within Few Minutes.....</div>
-            <div class="live-badge">🟢 Live</div>
-        </div>
+</section>
 
-        <button class="missed-btn" onclick="missedBus()">
-            😔 I Missed My Bus
-        </button>
+<!-- ================= BOTTOM NAV ================= -->
+<nav class="bottom-nav">
 
-        <div class="mobile-time">
-            Current Time
-            <span id="currentTime">08:00 AM</span>
-        </div>
+    <button onclick="showScreen('homeScreen')">
+        🏠 <span>Home</span>
+    </button>
 
-    </section>
+    <button onclick="showScreen('findScreen')">
+        🚌 <span>Find</span>
+    </button>
 
+    <button onclick="showScreen('timetableScreen')">
+        📅 <span>Timetable</span>
+    </button>
 
-    <!-- TIMETABLE SCREEN -->
-    <section id="timetableScreen" class="screen">
+    <button onclick="showScreen('aboutScreen')">
+        ℹ️ <span>About</span>
+    </button>
 
-        <div class="top-bar">
-            <button class="back-btn" onclick="showScreen('homeScreen')">←</button>
-            <h2>Bus Timetable</h2>
-        </div>
+</nav>
 
-        <!-- FIXED DOWNLOAD BUTTON -->
-        <button class="download-btn" onclick="downloadTimetable()">
-            ⬇ Download Timetable
-        </button>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    © 2026 ENTE BUS | Developed by
+    <a href="https://instagram.com/ak.sheyyy_" target="_blank">
+        Akshay Theduvil
+    </a>
+</footer>
 
-        <p class="select-route">
-            Select which side you want to go
-        </p>
-
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('chemmad', this)">
-                To Chemmad
-            </button>
-
-            <button class="tab" onclick="switchTab('kunnumpuram', this)">
-                To Kunnumpuram
-            </button>
-        </div>
-
-        <div id="timetableList"></div>
-
-    </section>
-
-
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-nav">
-
-        <button onclick="showScreen('homeScreen')">
-            🏠 <span>Home</span>
-        </button>
-
-        <button onclick="showScreen('findScreen')">
-            🚌 <span>Find</span>
-        </button>
-
-        <button onclick="showScreen('timetableScreen')">
-            📅 <span>Timetable</span>
-        </button>
-
-        <button onclick="showScreen('aboutScreen')">
-            ℹ️ <span>About</span>
-        </button>
-
-    </nav>
-
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        © 2026 ENTE BUS | Developed by
-        <a href="https://instagram.com/ak.sheyyy_" target="_blank">
-            Akshay Theduvil
-        </a>
-    </footer>
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
