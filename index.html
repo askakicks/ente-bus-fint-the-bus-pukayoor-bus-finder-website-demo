@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ENTE BUS</title>
 
     <link rel="stylesheet" href="style.css">
@@ -12,34 +11,9 @@
 </head>
 <body>
 
-    <!-- LANGUAGE SCREEN -->
-
-    <section id="languageScreen" class="screen active">
-
-        <div class="language-overlay">
-
-            <img src="bus.png" alt="Bus" class="language-bus">
-
-            <h1>ENTE BUS</h1>
-
-            <p>Select Language<br>ഭാഷ തിരഞ്ഞെടുക്കുക</p>
-
-            <button onclick="selectLanguage('en')" class="lang-btn">
-               🇮🇳 English
-            </button>
-
-            <button onclick="selectLanguage('ml')" class="lang-btn">
-                🇮🇳 മലയാളം
-            </button>
-
-        </div>
-
-    </section>
-
-
     <!-- HOME SCREEN -->
 
-    <section id="homeScreen" class="screen">
+    <section id="homeScreen" class="screen active">
 
         <div class="app-header">
 
@@ -179,60 +153,59 @@
 
     <!-- TIMETABLE SCREEN -->
 
-   <!-- TIMETABLE SCREEN -->
+    <section id="timetableScreen" class="screen">
 
-<section id="timetableScreen" class="screen">
+        <div class="top-bar">
 
-    <div class="top-bar">
+            <button class="back-btn"
+                onclick="showScreen('homeScreen')">
+                ←
+            </button>
 
-        <button class="back-btn"
-            onclick="showScreen('homeScreen')">
-            ←
-        </button>
+            <h2>Bus Timetable</h2>
 
-        <h2>Bus Timetable</h2>
-
-    </div>
-
-    <button
-        class="download-btn"
-        onclick="downloadTimetable()">
-
-        ⬇ Download Timetable
-
-    </button>
-
-    <p class="select-route">
-
-        Select which side you want to go
-
-    </p>
-
-    <div class="tabs">
+        </div>
 
         <button
-            class="tab active"
-            onclick="switchTab('chemmad', this)">
+            class="download-btn"
+            onclick="downloadTimetable()">
 
-            To Chemmad
-
-        </button>
-
-        <button
-            class="tab"
-            onclick="switchTab('kunnumpuram', this)">
-
-            To Kunnumpuram
+            ⬇ Download Timetable
 
         </button>
 
-    </div>
+        <p class="select-route">
 
-    <div id="timetableList">
+            Select which side you want to go
 
-    </div>
+        </p>
 
-</section>
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                onclick="switchTab('chemmad', this)">
+
+                To Chemmad
+
+            </button>
+
+            <button
+                class="tab"
+                onclick="switchTab('kunnumpuram', this)">
+
+                To Kunnumpuram
+
+            </button>
+
+        </div>
+
+        <div id="timetableList">
+
+        </div>
+
+    </section>
+
 
     <!-- BOTTOM NAVIGATION -->
 
@@ -259,7 +232,6 @@
         </button>
 
     </nav>
-
 
     <script src="script.js"></script>
 
