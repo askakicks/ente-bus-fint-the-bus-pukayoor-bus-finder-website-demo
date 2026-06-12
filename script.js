@@ -1,7 +1,3 @@
-// =========================
-// ENTE BUS - SCRIPT.JS
-// =========================
-
 let currentLanguage = "en";
 
 const chemmadTimes = [
@@ -30,58 +26,18 @@ const kunnumpuramTimes = [
 ];
 
 // =========================
-// LANGUAGE
-// =========================
-
-function selectLanguage(lang){
-
-    currentLanguage = lang;
-
-    document
-        .getElementById("languageScreen")
-        .classList.remove("active");
-
-    document
-        .getElementById("homeScreen")
-        .classList.add("active");
-
-    if(lang === "ml"){
-
-        document.getElementById("welcomeTitle").innerText =
-        "എന്റെ ബസിലേക്ക് സ്വാഗതം";
-
-        document.getElementById("welcomeSub").innerText =
-        "നിങ്ങളുടെ അടുത്ത ബസ് ഉടൻ കണ്ടെത്തൂ";
-    }
-
-    setTimeout(function(){
-
-        showScreen("findScreen");
-
-    }, 1000);
-
-}
-
-// =========================
 // SCREEN SWITCHING
 // =========================
 
 function showScreen(screenId){
 
     document.querySelectorAll(".screen")
-        .forEach(screen => screen.classList.remove("active"));
+        .forEach(s => s.classList.remove("active"));
 
     document.getElementById(screenId)
         .classList.add("active");
 
     if(screenId === "timetableScreen"){
-
-        document.querySelectorAll(".tab")
-            .forEach(tab => tab.classList.remove("active"));
-
-        document.querySelector(".tab")
-            .classList.add("active");
-
         loadTimetable("chemmad");
     }
 }
@@ -108,20 +64,17 @@ function updateClock(){
 
     const now = new Date();
 
-    const timeString =
-now.toLocaleTimeString([], {
-    hour:'2-digit',
-    minute:'2-digit',
-    hour12:true
-});
-    const el = document.getElementById("currentTime");
+    const timeString = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
 
-    if(el){
-        el.innerText = timeString;
-    }
+    const el = document.getElementById("currentTime");
+    if(el) el.innerText = timeString;
 }
 
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
 // =========================
 // FIND NEXT BUS
@@ -129,8 +82,7 @@ setInterval(updateClock,1000);
 
 function findNextBus(){
 
-    const destination =
-        document.getElementById("destination").value;
+    const destination = document.getElementById("destination").value;
 
     const timetable =
         destination === "chemmad"
@@ -143,38 +95,26 @@ function findNextBus(){
         : "Pukayoor → Kunnumpuram";
 
     const now = new Date();
-
-    const currentMinutes =
-        now.getHours() * 60 + now.getMinutes();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
     let nextBus = null;
 
     for(const time of timetable){
 
         const [h,m] = time.split(":");
-
-        const busMinutes =
-            parseInt(h) * 60 +
-            parseInt(m);
+        const busMinutes = parseInt(h)*60 + parseInt(m);
 
         if(busMinutes > currentMinutes){
-
             nextBus = time;
             break;
         }
     }
 
     if(nextBus){
-
         showResult(nextBus);
-
     }else{
-
-        document.getElementById("busTime").innerText =
-            "No More Buses";
-
-        document.getElementById("countdown").innerText =
-            "Service Closed";
+        document.getElementById("busTime").innerText = "No More Buses";
+        document.getElementById("countdown").innerText = "Service Closed";
     }
 }
 
@@ -186,22 +126,14 @@ function showResult(time){
 
     const [h,m] = time.split(":");
 
-    const busMinutes =
-        parseInt(h) * 60 +
-        parseInt(m);
+    const busMinutes = parseInt(h)*60 + parseInt(m);
 
     const now = new Date();
+    const currentMinutes = now.getHours()*60 + now.getMinutes();
 
-    const currentMinutes =
-        now.getHours() * 60 +
-        now.getMinutes();
+    const remaining = busMinutes - currentMinutes;
 
-    const remaining =
-        busMinutes - currentMinutes;
-
-    document.getElementById("busTime").innerText =
-        formatTime(time);
-
+    document.getElementById("busTime").innerText = formatTime(time);
     document.getElementById("countdown").innerText =
         "Arriving in " + remaining + " minutes";
 }
@@ -212,36 +144,20 @@ function showResult(time){
 
 function missedBus(){
 
-    const destination =
-        document.getElementById("destination").value;
+    const destination = document.getElementById("destination").value;
 
     const timetable =
         destination === "chemmad"
         ? chemmadTimes
         : kunnumpuramTimes;
 
-    const shownTime =
-        document.getElementById("busTime").innerText;
+    const shownTime = document.getElementById("busTime").innerText;
 
-    let currentIndex = -1;
+    let index = timetable.findIndex(t => formatTime(t) === shownTime);
 
-    timetable.forEach((time,index)=>{
-
-        if(formatTime(time) === shownTime){
-
-            currentIndex = index;
-        }
-    });
-
-    if(
-        currentIndex !== -1 &&
-        currentIndex < timetable.length - 1
-    ){
-
-        showResult(timetable[currentIndex + 1]);
-
+    if(index !== -1 && index < timetable.length - 1){
+        showResult(timetable[index + 1]);
     }else{
-
         alert("No more buses today");
     }
 }
@@ -252,37 +168,23 @@ function missedBus(){
 
 function formatTime(time24){
 
-    let [hours, minutes] = time24.split(":");
+    let [h,m] = time24.split(":");
+    h = parseInt(h);
 
-    hours = parseInt(hours);
+    const ampm = h >= 12 ? "PM" : "AM";
+    let display = h % 12;
+    if(display === 0) display = 12;
 
-    const ampm =
-        hours >= 12 ? "PM" : "AM";
-
-    let displayHours =
-        hours % 12;
-
-    if(displayHours === 0){
-        displayHours = 12;
-    }
-
-    return (
-        String(displayHours).padStart(2,"0") +
-        ":" +
-        minutes +
-        " " +
-        ampm
-    );
+    return String(display).padStart(2,"0") + ":" + m + " " + ampm;
 }
+
 // =========================
 // TIMETABLE
 // =========================
 
 function loadTimetable(route){
 
-    const list =
-        document.getElementById("timetableList");
-
+    const list = document.getElementById("timetableList");
     list.innerHTML = "";
 
     const timetable =
@@ -292,15 +194,9 @@ function loadTimetable(route){
 
     timetable.forEach(time => {
 
-        const card =
-            document.createElement("div");
-
+        const card = document.createElement("div");
         card.className = "glass-card";
-
-        card.innerHTML =
-            "<h3>" +
-            formatTime(time) +
-            "</h3>";
+        card.innerHTML = "<h3>" + formatTime(time) + "</h3>";
 
         list.appendChild(card);
     });
@@ -311,31 +207,23 @@ function loadTimetable(route){
 // =========================
 
 window.onload = function(){
-
     updateClock();
 };
-function switchTab(route, button){
 
-    document.querySelectorAll(".tab")
-    .forEach(tab => {
-        tab.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    loadTimetable(route);
-}
+// =========================
+// DOWNLOAD TIMETABLE (FIXED FOR GITHUB)
+// =========================
 
 function downloadTimetable(){
 
-    const link =
-    document.createElement("a");
+    const link = document.createElement("a");
 
-    link.href =
-    "assets/timetable.jpg";
+    // IMPORTANT: your real file
+    link.href = "timetable.png";
 
-    link.download =
-    "ENTE-BUS-Timetable.jpg";
+    link.download = "ENTE-BUS-Timetable.png";
 
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 }
